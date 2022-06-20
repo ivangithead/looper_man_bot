@@ -41,9 +41,9 @@ async def main_thread(bot: Bot) -> None:
 
 					loops_count1 = loops_count2
 				
-				clear()
 				print("Request sent!")
 				await asyncio.sleep(0.125)
+				clear() #cmd
 		except Exception as ex:
 			logger.critical(ex)
 			await asyncio.sleep(3)
