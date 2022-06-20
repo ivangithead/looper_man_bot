@@ -42,5 +42,6 @@ async def main_thread(bot: Bot) -> None:
 
 				await asyncio.sleep(0.125)
 		except Exception as ex:
-			logger.critical(ex)
+			if not ("bot was blocked by the user" in ex):
+				logger.critical(ex)
 			await asyncio.sleep(3)
