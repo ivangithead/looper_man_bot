@@ -36,12 +36,11 @@ async def main_thread(bot: Bot) -> None:
 							await bot.send_audio(user, last_loop[0], caption=caption, reply_markup=markup)
 							sqlite.increment_user_samples(user)
 						except Exception as ex:
-							logger.warning(ex)
+							logger.info(f"{ex} [{user}]")
 
 					loops_count1 = loops_count2
 
 				await asyncio.sleep(0.125)
 		except Exception as ex:
-			if not ("bot was blocked by the user" in ex):
-				logger.critical(ex)
+			logger.critical(ex)
 			await asyncio.sleep(3)
