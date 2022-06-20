@@ -1,0 +1,4 @@
+aiogram==2.20
+python-dotenv==0.17.1
+lxml==4.9.0
+beautifulsoup4==4.11.1
