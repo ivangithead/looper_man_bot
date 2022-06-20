@@ -7,6 +7,7 @@ from parser import get_loops_count, get_last_loop
 import sqlite
 
 logger = logging.getLogger("bot.threads.main_thread")
+clear = lambda: os.system('cls')
 
 async def main_thread(bot: Bot) -> None:
 	while True:
