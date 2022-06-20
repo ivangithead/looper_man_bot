@@ -20,12 +20,12 @@ async def main_thread(bot: Bot) -> None:
 					last_loop = get_last_loop()
 
 					caption = f"🎹 <b><a href='{last_loop[3]}'>{last_loop[2]}</a></b> — \
-	<b>{last_loop[1]}</b>\n\
-	├ <b>BPM</b>: {last_loop[5].split()[0]}\n\
-	├ <b>Длительность</b>: {last_loop[4].strip()}\n\
-	├ <b>Жанр</b>: {last_loop[6].strip()}\n\
-	├ <b>Категория</b>: {last_loop[7].strip()}\n\
-	└ <b>Тональность</b>: {last_loop[10].split(':')[-1].strip()}"
+<b>{last_loop[1]}</b>\n\
+├ <b>BPM</b>: {last_loop[5].split()[0]}\n\
+├ <b>Длительность</b>: {last_loop[4].strip()}\n\
+├ <b>Жанр</b>: {last_loop[6].strip()}\n\
+├ <b>Категория</b>: {last_loop[7].strip()}\n\
+└ <b>Тональность</b>: {last_loop[10].split(':')[-1].strip()}"
 					
 					markup = types.InlineKeyboardMarkup().add(
 						types.InlineKeyboardButton("Скачать ⬇️", url=last_loop[0])
