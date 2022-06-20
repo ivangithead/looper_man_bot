@@ -96,6 +96,14 @@ async def feedback(message: types.Message) -> None:
 		logger.warning(ex)
 
 @rate_limit(limit=RATE_LIMIT)
+@dp.message_handler(lambda message: "фильтр" in message.text.lower())
+async def filter(message: types.Message) -> None:
+	try:
+		await message.reply("<b>В разработке.</b>")
+	except Exception as ex:
+		logger.warning(ex)
+		
+@rate_limit(limit=RATE_LIMIT)
 @dp.message_handler(content_types=types.ContentType.TEXT)
 async def feedback(message: types.Message) -> None:
 	try:
