@@ -9,4 +9,4 @@ async def my_chat_member(message: types.Message) -> None:
 	try:
 		await bot.leave_chat(message.chat.id)
 	except Exception as ex:
-		logger.critical(ex)
+		logger.info(ex)
