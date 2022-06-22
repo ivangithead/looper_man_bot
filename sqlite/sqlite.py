@@ -107,6 +107,43 @@ def get_users_with_sub(db_path: str=DB_PATH) -> list:
 			con.close()
 		return [user[0] for user in users]
 
+def get_users(db_path: str=DB_PATH) -> list:
+	try:
+		con = sqlite3.connect(db_path)
+		cur = con.cursor()
+
+		time_now = int(time.time())
+
+		query = f"""SELECT user_id FROM users"""
+		users = cur.execute(query).fetchall()
+
+		cur.close()
+	except Exception as ex:
+		logger.critical(ex)
+	finally:
+		if con:
+			con.close()
+		return [user[0] for user in users]	
+
+def user_is_sub(user_id: int, db_path: str=DB_PATH) -> bool:
+	try:
+		con = sqlite3.connect(db_path)
+		cur = con.cursor()
+
+		time_now = int(time.time())
+
+		query = f"""SELECT subscribe FROM users WHERE user_id={user_id}"""
+		sub = cur.execute(query).fetchone()
+
+		cur.close()
+	except Exception as ex:
+		logger.critical(ex)
+	finally:
+		if con:
+			con.close()
+		if sub > time_now or sub == 0:
+			return True
+	
 def get_table(db_path: str=DB_PATH) -> list:
 	"""Для админ-панели"""
 	try:
