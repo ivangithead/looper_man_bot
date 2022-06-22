@@ -32,7 +32,7 @@ async def main_thread(bot: Bot) -> None:
 						types.InlineKeyboardButton("Скачать ⬇️", url=last_loop[0])
 					)
 
-					for user in sqlite.get_users_with_sub():
+					for user in sqlite.get_users():
 						try:
 							await bot.send_audio(user, last_loop[0], caption=caption, reply_markup=markup)
 							sqlite.increment_user_samples(user)
