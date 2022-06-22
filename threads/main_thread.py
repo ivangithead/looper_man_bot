@@ -1,5 +1,7 @@
 import asyncio
 import logging
+import random
+import os
 #################################################
 from aiogram import Bot
 from aiogram import types
@@ -34,8 +36,12 @@ async def main_thread(bot: Bot) -> None:
 
 					for user in sqlite.get_users():
 						try:
-							await bot.send_audio(user, last_loop[0], caption=caption, reply_markup=markup)
-							sqlite.increment_user_samples(user)
+							if sqlite.user_is_sub(user):
+								await bot.send_audio(user, last_loop[0], caption=caption, reply_markup=markup)
+								sqlite.increment_user_samples(user)
+							else:
+								if random.randint(1, 20) == 7:
+									await bot.send_message(user, "<b>Вы пропустили 1 сэмпл.</b>\n<i>У вас истекла подписка, продлите её, чтобы снова получать сэмплы.</i>")
 						except Exception as ex:
 							logger.info(f"{ex} [{user}]")
 
